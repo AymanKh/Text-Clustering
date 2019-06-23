@@ -29,10 +29,21 @@ data_path = './paper_dataset.txt'
 
 # This function filters a 'list of list', so that it only contains 'lists' of length 'size'
 def by_size(words, size):
+    """Form a list
+
+    Keyword arguments:
+    words -- a list of list containing words
+    size -- The target length
+    """
     return [word for word in words if len(word) == size]
 
 # This function extract the title from data file
 def parseTitle():
+    """This Function opens the dataset file, and extracts the 'title' field
+
+    Keyword arguments:
+    NONE
+    """
     # my code here
     with open(data_path) as f:
         lines = f.readlines()
@@ -48,6 +59,11 @@ def parseTitle():
 
 # This function gets extract the abstract from data file
 def parseAbstract():
+    """This Function opens the dataset file, and extracts the 'Abstract' field
+
+    Keyword arguments:
+    NONE
+    """
     # my code here
     with open(data_path) as f:
         lines = f.readlines()
@@ -62,6 +78,11 @@ def parseAbstract():
 
 
 def tokenize_and_stem(text):
+    """This Function recieves a string, then tokenize and stem all words in the string
+
+    Keyword arguments:
+    text -- the string containing the target text
+    """
     stemmer = SnowballStemmer("english")
     # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
     tokens = [word for sent in nltk.sent_tokenize(
@@ -77,6 +98,11 @@ def tokenize_and_stem(text):
 
 
 def tokenize_only(text):
+    """This Function opens the dataset file, and ONLY tokenize the words
+
+    Keyword arguments:
+    text -- contains the target text
+    """
     # first tokenize by sentence, then by word to ensure that punctuation is caught as it's own token
     tokens = [word.lower() for sent in nltk.sent_tokenize(text)
               for word in nltk.word_tokenize(sent)]
